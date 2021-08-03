@@ -17,7 +17,10 @@ def index():
 
 @app.route('/predict',methods = ['GET','POST'])
 def upload():
+    text=''
     if request.method == 'POST':
+        text = 'Prediction'
+
         f = request.files['image']
         print("current path")
         basepath = os.path.dirname(__file__)
@@ -34,12 +37,11 @@ def upload():
         if preds[0][0] == 1:
             prediction = "Malignent"
         else:
-            prediction = "bening"
+            prediction = "Benign"
         
         print("prediction", prediction)
         
-        
-        text = "the prediction is : " + str(prediction)
+        text = "The prediction is : " + str(prediction)
         
     return text
 if __name__ == '__main__':
